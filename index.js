@@ -87,9 +87,17 @@ class Car {
     this.tank= this.tank+gallons;
   }
   drive(distance){
-    this.odometer= this.odometer+distance;
-    this.tank= this.tank- (distance/this.milesPerGallon);
-  }
+    const maxMiles= this.milesPerGallon * this.tank;
+    const didntMakeIt= 'I ran out of fuel at ${this.odometer} miles!'
+    if(distance>maxMiles){
+      this.odometer= this.odometer+maxMiles;
+      this.tank= 0
+      return didntMakeIt
+    } else{
+      this.odometer= this.odometer+ distance;
+      this.tank= this.tank- (distance/this.milesPerGallon);
+    }
+}
 }
 
 /*
@@ -139,8 +147,8 @@ class Instructor extends Lambdasian {
   demo(subject){
     return `Today we are learning about ${subject}`
   }
-grade(student, string){
-  `${student.name} receives a perfect score on ${subject}`
+grade(student, subject){
+  return `${student.name} receives a perfect score on ${subject}`
 }
 }
 /*
@@ -169,10 +177,10 @@ class Student extends Lambdasian{
      return `loving ${this.favSubjects}!`;
    }
    PRAssignment(subject) {
-     return `${student.name} has submitted a PR for ${subject}`
+     return `${this.name} has submitted a PR for ${subject}`
       }
    sprintChallenge(subject){
-    return `{student.name} has begun a sprint challenge on ${subject}`
+    return `${this.name} has begun a sprint challenge on ${subject}`
    }
 }
 
