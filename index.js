@@ -45,19 +45,19 @@ class Person {
   constructor(name, age){
     this.name= name;
     this.age= age;
-    this.stomach=0
+    this.stomach = []
   }
   eat(someFood){
-    if(this.stomach.length >10){
-      return 'STOP EATING SO MUCH FOOD!'
-    }else{
+    if(this.stomach.length < 10){
       this.stomach.push(someFood)
+    }else{
+      return `no more food for you!`
     }
   }
   poop() {
     this.stomach= [];
   }
-  details() {
+  toString() {
     return `${this.name}, ${this.age}`
   }
 }
@@ -88,17 +88,17 @@ class Car {
   }
   drive(distance){
     const maxMiles= this.milesPerGallon * this.tank;
-    const didntMakeIt= 'I ran out of fuel at ${this.odometer} miles!'
     if(distance>maxMiles){
       this.odometer= this.odometer+maxMiles;
       this.tank= 0
-      return didntMakeIt
+      return `I ran out of fuel at ${this.odometer} miles!`
     } else{
       this.odometer= this.odometer+ distance;
       this.tank= this.tank- (distance/this.milesPerGallon);
     }
 }
 }
+
 
 /*
   TASK 3
@@ -206,8 +206,8 @@ class ProjectManager extends Instructor {
   standUp(slackChannel){
     return `${this.name} announces to ${slackChannel}, @channel standy times!`;
   }
-   debugsCode(studentObj, subject){
-     returns `${this.name} debugs ${studentObj.name}'s code on ${subject}`
+   debugsCode(student, subject){
+     return `${this.name} debugs ${student.name}'s code on ${subject}`
    }
 }
 /*
